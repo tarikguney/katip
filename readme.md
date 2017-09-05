@@ -13,9 +13,6 @@ as any change occurs, and folderpath is the current directory.
 3. `katip destroy` Destroys all the history recorded. It also stops the application if it is still running.
 4. `katip pause` Pauses the app.
 5. `katip resume` Resumes the app with all the arguments passed initially when the app was first started.
-Command: katip watch 
-The folderApp is an optional argument, and if not specified, the application will start watching and versioning the current
-directory. The other commands will work similar.
 
 ## Behind the Scenes
 
