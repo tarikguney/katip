@@ -16,7 +16,7 @@ as any change occurs, and folderpath is the current directory.
 
 ## Behind the Scenes
 
-Internally, Katip uses Git to record, store, retrive, and reload historical changes in a given folder. It, however, automates all the Git specific commands and make it is easier to consume for regular users. It is an abstraction over Git to make it easier to use by everyone instead of just technical users. However, power users can also greatly benefit from Katip when they are in need a quick and fast version control solution to record, navigate, compare, and bring back their historical changes.
+Internally, Katip uses [Git](https://git-scm.com) to record, store, retrive, and reload historical changes in a given folder. It, however, automates all the Git specific commands and make it is easier to consume for regular users. It is an abstraction over Git to make it easier to use by everyone instead of just technical users. However, power users can also greatly benefit from Katip when they are in need a quick and fast version control solution to record, navigate, compare, and bring back their historical changes.
 
 ## Issues
 
