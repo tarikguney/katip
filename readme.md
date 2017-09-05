@@ -17,6 +17,10 @@ Command: katip watch
 The folderApp is an optional argument, and if not specified, the application will start watching and versioning the current
 directory. The other commands will work similar.
 
+## Behind the Scenes
+
+Internally, Katip uses Git to record, store, retrive, and reload historical changes in a given folder. It, however, automates all the Git specific commands and make it is easier to consume for regular users. It is an abstraction over Git to make it easier to use by everyone instead of just technical users. However, power users can also greatly benefit from Katip when they are in need a quick and fast version control solution to record, navigate, compare, and bring back their historical changes.
+
 ## Issues
 
 The problem is that when the computer is restarted, the application will not continue watching the folder specified. At first, this will be documented, but later this will be improved by starting the application when the computer starts.
