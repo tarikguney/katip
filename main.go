@@ -1,15 +1,29 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
-	"os"
-	"strings"
+	"os/exec"
 
-	_ "github.com/urfave/cli"
+	"github.com/urfave/cli"
 )
 
+// Bu uygulama bakalim hic basarili olacak mi? Shower thoughts olarak aklima geldi.
 func main() {
 	fmt.Println("Hello, World")
-	//cli.NewApp().Run(os.Args)
-	fmt.Println(strings.Join(os.Args, ", "))
+	app := cli.NewApp()
+	app.Name = "Katip"
+	app.Usage = "Micro backups with historical changes"
+	command := exec.Command("git", "log")
+	var out bytes.Buffer
+
+	command.Stdout = &out
+	var err error = command.Run()
+	// app.Action = func(context *cli.Context) error {
+	// 	fmt.Println("Hello, World")
+	// 	return nil
+	// }
+	fmt.Println(out.String())
+	fmt.Println(err)
+	// app.Run(os.Args)
 }
