@@ -8,7 +8,8 @@ import (
 	"github.com/urfave/cli"
 )
 
-// Bu uygulama bakalim hic basarili olacak mi? Shower thoughts olarak aklima geldi.
+// I think the reason why this pkg folder exists is because it contains pre-compiled object files
+// that are not going to be compiled again for speed during the whole compilation process.
 func main() {
 	fmt.Println("Hello, World")
 	app := cli.NewApp()
