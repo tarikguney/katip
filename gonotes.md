@@ -15,3 +15,16 @@ func main(){
     fmt.Println(person.IsMale) // outputs false
 }
 ```
+
+## Creating a new error
+
+You can eitehr implement your new `struct` that satisfies an `error` interface or use `errors.New("error message")` to return a new one easily.
+
+```
+type MyError string;
+func (myError *MyError) Error() string{
+    return myError
+}
+```
+
+Yes, there is no try-catch-finally block in Golang...
