@@ -13,12 +13,7 @@ func GetAllCommands() []cli.Command {
 			Aliases: []string{"w"},
 			Usage:   "Starts a new watch. By default, it commits changes to the history as any change occurs, and folderpath is the current directory.",
 			Action: func(c *cli.Context) error {
-				success, err := runWatchCommand()
-				if !success {
-					fmt.Println(err)
-				} else {
-					fmt.Println("Watch has started... Go ahead and make some changes.")
-				}
+				fmt.Println("Not yet implemented: ", c.Args().First())
 				return nil
 			},
 		},
