@@ -10,7 +10,7 @@ func GetAllCommands() []cli.Command {
 		{
 			Name:    "watch",
 			Aliases: []string{"w"},
-			Usage:   "Starts a new watch. By default, it commits changes to the history as any change occurs, and folderpath is the current directory.",
+			Usage:   "Starts a new watch. By default, it commits changes to the history as any change occurs, and folder path is the current directory.",
 			Action: func(c *cli.Context) error {
 				success, err := runWatchCommand()
 				if !success {

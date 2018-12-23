@@ -11,7 +11,7 @@ import (
 
 func runWatchCommand() (success bool, err error) {
 	_, fileError := os.Stat(common.KATIP_REPO)
-	if os.IsExist(fileError) {
+	if !os.IsNotExist(fileError) {
 		err = errors.New("this folder is already being watched. i will continue adding to the existing history")
 		success = false
 	} else {
@@ -29,18 +29,18 @@ func runWatchCommand() (success bool, err error) {
 	go func() {
 		for {
 			select {
-			case event, ok := <-watcher.Events:
-				if !ok {
-					return
-				}
-				log.Println("Event:", event)
-				if event.Op == fsnotify.Write {
-					log.Println("Modified file:" + event.Name)
-				}
+					case event, ok := <-watcher.Events:
+						if !ok {
+						return
+					}
+						log.Println("Event:", event)
+						if event.Op&fsnotify.Write == fsnotify.Write {
+						log.Println("Modified file:" + event.Name)
+					}
 
-			case err, ok := <-watcher.Errors:
-				if !ok {
-					return
+					case err, ok := <-watcher.Errors:
+						if !ok {
+						return
 				}
 				log.Println("Error:", err)
 			}
