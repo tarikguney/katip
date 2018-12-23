@@ -1,4 +1,4 @@
 package common
 
-var GIT string = "/usr/bin/git"
-var KATIP_REPO string = ".katip_repo"
+var GIT string = "git"
+var KATIP_REPO string = ".katip-repo"

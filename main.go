@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/tarikguney/katip/commands"
 	"os"
 
@@ -15,5 +16,9 @@ func main() {
 
 	app.Commands = commands.GetAllCommands()
 
-	app.Run(os.Args)
+	err := app.Run(os.Args)
+	if err != nil{
+		fmt.Print(err)
+		os.Exit(1)
+	}
 }
