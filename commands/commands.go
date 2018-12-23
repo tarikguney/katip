@@ -2,7 +2,6 @@ package commands
 
 import (
 	"fmt"
-
 	"github.com/urfave/cli"
 )
 

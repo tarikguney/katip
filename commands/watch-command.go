@@ -3,7 +3,7 @@ package commands
 import (
 	"errors"
 	"github.com/fsnotify/fsnotify"
-	"katip/common"
+	"github.com/tarikguney/katip/common"
 	"log"
 	"os"
 	"os/exec"

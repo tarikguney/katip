@@ -1,7 +1,7 @@
 package main
 
 import (
-	"katip/commands"
+	"github.com/tarikguney/katip/commands"
 	"os"
 
 	"github.com/urfave/cli"
