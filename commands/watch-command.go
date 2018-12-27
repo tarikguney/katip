@@ -2,15 +2,21 @@ package commands
 
 import (
 	"errors"
+	"fmt"
 	"github.com/fsnotify/fsnotify"
 	"github.com/tarikguney/katip/common"
+	"github.com/tarikguney/katip/git"
+	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
+	"time"
 )
 
 func runWatchCommand() (success bool, err error) {
 	_, fileError := os.Stat(common.KATIP_REPO)
+
+	writeGitIgnore()
 
 	if !os.IsNotExist(fileError) {
 		err = errors.New("this folder is already being watched. i will continue adding to the existing history")
@@ -21,6 +27,7 @@ func runWatchCommand() (success bool, err error) {
 	}
 
 	watcher, err := fsnotify.NewWatcher()
+	_ = watcher.Remove(".katip-repo")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -36,6 +43,17 @@ func runWatchCommand() (success bool, err error) {
 					return
 				}
 				if event.Op == fsnotify.Write {
+					err := git.Add()
+					time.Sleep(2 * time.Second)
+					if err != nil {
+						log.Fatal(err)
+						return
+					}
+					var resultMessage = fmt.Sprintf("%v is recorded in the history.", event.Name)
+					err = git.Commit(resultMessage)
+					if err != nil {
+						log.Fatal(err)
+					}
 					log.Println("Modified file:" + event.Name)
 				}
 			case err, ok := <-watcher.Errors:
@@ -54,4 +72,9 @@ func runWatchCommand() (success bool, err error) {
 
 	<-done
 	return
+}
+
+func writeGitIgnore() {
+	var ignoreKatipRepo = ".katip-repo/*"
+	_ = ioutil.WriteFile(".gitignore", []byte(ignoreKatipRepo), 0644)
 }
