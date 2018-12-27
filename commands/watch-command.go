@@ -10,6 +10,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"time"
 )
 
@@ -27,6 +28,17 @@ func runWatchCommand() (success bool, err error) {
 	}
 
 	watcher, err := fsnotify.NewWatcher()
+
+	// Remove all files under .katip-repo from watcher list.
+	// todo Continously ignore .katip-repo files as you commit, otherwise it enters an infinite-loop.
+	_ = filepath.Walk(".katip-repo", func(path string, info os.FileInfo, err error) error {
+		if err != nil{
+			return err
+		}
+		err = watcher.Remove(path)
+		return err
+	})
+
 	_ = watcher.Remove(".katip-repo")
 	if err != nil {
 		log.Fatal(err)
